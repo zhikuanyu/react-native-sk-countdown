@@ -88,3 +88,25 @@ AppRegistry.registerComponent('test', () => test);
 
 ```
 ![](https://raw.githubusercontent.com/shigebeyond/react-native-sk-countdown/master/demo.gif)
+
+##Properties
+
+Any [Text property](http://facebook.github.io/react-native/docs/text.html) and the following:
+
+| Prop | Description | Default |
+|---|---|---|
+|**`countType`**|Countdown type, one of 'seconds' and 'date'. |*None*|
+|**`auto`**|Whether to start countdown right now. |*false*|
+|**`timeLeft`**|Seconds lefted to countdown. |*None*|
+|**`step`**|Number to increment in each step. |*-1*|
+|**`startText`**|Text before countdown. |*None*|
+|**`endText`**|Text after countdown. |*None*|
+|**`intervalText`**|A function to reture a text during countdown. |*None*|
+|**`afterEnd`**|A callback function after countdown. |*None*|
+
+##Methods
+
+| Method | Description | Params |
+|---|---|---|
+|**`start`**|start countdown. |*None*|
+|**`end`**|finish countdown. |*None*|
