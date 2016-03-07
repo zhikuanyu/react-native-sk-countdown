@@ -1,0 +1,26 @@
+{
+  "name": "react-native-sk-countdown",
+  "version": "1.0.0",
+  "description": "A simple countdown component for React Native, pure js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shigebeyond/react-native-sk-countdown.git"
+  },
+  "keywords": [
+    "react-native",
+    "countdown"
+  ],
+  "devDependencies": {
+    "react-native": "^0.20.0"
+  },
+  "author": "shigebeyond",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shigebeyond/react-native-sk-countdown/issues"
+  },
+  "homepage": "https://github.com/shigebeyond/react-native-sk-countdown#readme"
+}
