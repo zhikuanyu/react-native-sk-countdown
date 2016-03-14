@@ -1,6 +1,6 @@
 {
   "name": "react-native-sk-countdown",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple countdown component for React Native, pure js",
   "main": "index.js",
   "scripts": {
@@ -14,9 +14,6 @@
     "react-native",
     "countdown"
   ],
-  "devDependencies": {
-    "react-native": "^0.20.0"
-  },
   "author": "shigebeyond",
   "license": "MIT",
   "bugs": {
