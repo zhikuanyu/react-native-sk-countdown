@@ -12,15 +12,14 @@ this.refs.countDownText.end();
 
 'use strict'
 
-var React = require('react-native');
+import React, { Component } from 'react'
+import {
+	StyleSheet,
+	Text
+} from 'react-native'
 
-var {
-  StyleSheet,
-  Text,
-} = React;
-
-var update = React.addons.update,
-    countDown = require('./countDown');
+var update = require('react-addons-update')
+var countDown = require('./countDown')
 
 var CountDownText = React.createClass({
   counter: null, // 计时器
