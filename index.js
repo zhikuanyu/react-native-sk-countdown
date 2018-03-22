@@ -1,7 +1,3 @@
-var countDown = require('./countDown');
-var CountDownText = require('./CountDownText');
+import CountDownText from './CountDownText'
 
-module.exports = {
-  countDown,
-  CountDownText
-}
+export default CountDownText

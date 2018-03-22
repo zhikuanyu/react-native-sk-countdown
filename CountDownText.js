@@ -9,47 +9,52 @@ this.refs.countDownText.start();
 3 结束计时
 this.refs.countDownText.end();
 */
-
-'use strict'
-
 import React, { Component } from 'react'
 import {
-	StyleSheet,
-	Text
+  StyleSheet,
+  Text
 } from 'react-native'
 
-var update = require('react-addons-update')
-var countDown = require('./countDown')
+import update from 'react-addons-update'
+import countDown from './countDown'
 
-var CountDownText = React.createClass({
-  counter: null, // 计时器
-  // 定时回调
-  getDefaultProps: function(){
-    return {
-      countType: "seconds",
-      onEnd: null, // 结束回调
-      timeLeft: 0,//正向计时 时间起点为0秒
-      step: -1, // 计时步长，以秒为单位，正数则为正计时，负数为倒计时
-      startText: null, // 开始的文本
-      intervalText: null, // 定时的文本，可以是回调函数
-      endText: null, // 结束的文本
-      auto: false, // 是否自动开始
-    };
-  },
-  getInitialState: function(){
-    return {
+class CountDownText extends Component {
+  constructor(props) {
+    super(props)
+    this.counter = null // 计时器
+    this.state = {
       text: this.props.startText, // 要显示文本
     }
-  },
+    this.onInterval = this.onInterval.bind(this)
+    this.onEnd = this.onEnd.bind(this)
+    this.start = this.start.bind(this)
+    this.end = this.end.bind(this)
+    this.reset = this.reset.bind(this)
+    this.getTimePassed = this.getTimePassed.bind(this)
+  }
+  
+  static defaultProps = {
+    countType: "seconds",
+    onEnd: null, // 结束回调
+    timeLeft: 0,//正向计时 时间起点为0秒
+    step: -1, // 计时步长，以秒为单位，正数则为正计时，负数为倒计时
+    startText: null, // 开始的文本
+    intervalText: null, // 定时的文本，可以是回调函数
+    endText: null, // 结束的文本
+    auto: false, // 是否自动开始
+  }
+
   // 判断两个时间是否相等，如果两个时间差在阀值之内，则可认为是相等
-  isTimeEquals: function(t1, t2){
-    var threshold = 2;
+  isTimeEquals(t1, t2) {
+    let threshold = 2;
     return Math.abs(t1 - t2) < threshold;
-  },
+  }
+
   // 当更新
-  componentWillReceiveProps: function(nextProps){
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps)
     // 判断是否要重新计时
-    var updating = true;
+    let updating = true;
     if(this.props.step == nextProps.step && this.props.step < 0){ // 倒计时的情况
       if(this.props.endTime){ // 1 按起始日期来计时
         // console.log('prev: startTime: ' + this.props.startTime + ' endTime: ' + this.props.endTime)
@@ -78,16 +83,19 @@ var CountDownText = React.createClass({
         this.start();
       }
     }
-  },
+  }
+
   // 定时调用 intervalText 来更新状态 text
-  onInterval: function(){
+  onInterval() {
     this.setState({text: this.props.intervalText.apply(null, arguments)})
-  },
-  onEnd: function(timePassed){
+  }
+
+  onEnd(timePassed) {
     this.setState({text: this.props.endText});
     this.props.afterEnd && this.props.afterEnd(timePassed);
-  },
-  componentDidMount: function(){
+  }
+
+  componentDidMount() {
     /*
     this.counter = countDown({
         countType: "seconds",
@@ -116,29 +124,35 @@ var CountDownText = React.createClass({
     if(this.props.auto){
       this.start();
     }
-  },
-  componentWillUnmount: function(){
+  }
+
+  componentWillUnmount() {
     // 重置倒计时
     this.reset();
-  },
+  }
+
   // 开始计时
-  start: function(){
+  start() {
     this.counter.start();
-  },
+  }
+
   // 结束计时
-  end: function(){
+  end() {
     this.counter.end();
-  },
+  }
+
   // 重置
-  reset: function(){
+  reset() {
     this.counter.reset();
-  },
-  render: function(){
+  }
+
+  render() {
     return <Text style={this.props.style}>{this.state.text}</Text>
-  },
-  getTimePassed: function(){
+  }
+
+  getTimePassed() {
     return this.counter.timePassed;
   }
-});
+}
 
-module.exports = CountDownText;
+export default CountDownText
